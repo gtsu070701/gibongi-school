@@ -32,6 +32,16 @@ function sizeClass(size: TreeNode["size"]) {
 
 export function Tree({ node }: { node: TreeNode }) {
   return (
+    <div className="w-full overflow-x-auto">
+      <div className="flex w-fit min-w-full flex-col items-center">
+        <TreeInner node={node} />
+      </div>
+    </div>
+  );
+}
+
+function TreeInner({ node }: { node: TreeNode }) {
+  return (
     <div className="flex flex-col items-center">
       <div
         className={`font-mono-num flex items-center justify-center whitespace-nowrap rounded-xl border-[1.5px] font-bold ${toneClass(
@@ -47,7 +57,7 @@ export function Tree({ node }: { node: TreeNode }) {
         <div className={`tree-kids ${node.children.length === 3 ? "tree-kids-3" : "tree-kids-2"}`}>
           {node.children.map((child, i) => (
             <div className="tree-branch" key={i}>
-              <Tree node={child} />
+              <TreeInner node={child} />
             </div>
           ))}
         </div>
