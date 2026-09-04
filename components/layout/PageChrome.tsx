@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import Link from "next/link";
 
 export function PageContainer({ children }: { children: ReactNode }) {
   return <div className="mx-auto flex max-w-[900px] flex-col gap-[60px] px-6 pb-[88px] pt-14">{children}</div>;
@@ -15,9 +16,17 @@ export function Hero({
   title: string;
   lede: string;
 }) {
+  const eyebrowParts = eyebrow.split(" · ");
+  const eyebrowRest = eyebrowParts.slice(1).join(" · ");
+
   return (
     <header className="flex flex-col gap-3.5 pt-2">
-      <div className="font-mono-num text-[12.5px] font-semibold uppercase tracking-[0.14em] text-[var(--composite)]">{eyebrow}</div>
+      <div className="font-mono-num text-[12.5px] font-semibold uppercase tracking-[0.14em] text-[var(--composite)]">
+        <Link href="/math-basic" className="hover:underline">
+          {eyebrowParts[0]}
+        </Link>
+        {eyebrowRest && <> · {eyebrowRest}</>}
+      </div>
       {prevLink && <div className="font-mono-num text-xs text-[var(--ink-faint)]">{prevLink}</div>}
       <h1 className="font-display text-balance text-[clamp(32px,5.2vw,50px)] font-bold leading-[1.15] text-[var(--ink)]">{title}</h1>
       <p className="max-w-[62ch] text-[16.5px] leading-relaxed text-[var(--ink-soft)]">{lede}</p>
