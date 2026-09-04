@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700;900&family=Gaegu:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+:root {
+  --bg: #F4F7FB;
+  --grid-line: rgba(47, 93, 168, 0.09);
+  --surface: #FFFFFF;
+  --surface-soft: #EAF0F8;
+  --ink: #1C2A3A;
+  --ink-soft: #5B6B82;
+  --ink-faint: #8C9AAF;
+  --border: #D7E1EE;
+  --prime: #0E8A82;
+  --prime-tint: rgba(14, 138, 130, 0.10);
+  --composite: #6B5CA5;
+  --composite-tint: rgba(107, 92, 165, 0.10);
+  --unit: #8C9AAF;
+  --unit-tint: rgba(140, 154, 175, 0.12);
+  --redpen: #C0392B;
+  --shadow: 0 1px 2px rgba(28, 42, 58, 0.06), 0 6px 20px rgba(28, 42, 58, 0.05);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F1620;
+    --grid-line: rgba(120, 160, 220, 0.07);
+    --surface: #17202C;
+    --surface-soft: #1D2836;
+    --ink: #E8EDF5;
+    --ink-soft: #9DACC2;
+    --ink-faint: #6B7A90;
+    --border: #2A3646;
+    --prime: #3FD9C7;
+    --prime-tint: rgba(63, 217, 199, 0.12);
+    --composite: #A78BD1;
+    --composite-tint: rgba(167, 139, 209, 0.14);
+    --unit: #7C8CA3;
+    --unit-tint: rgba(124, 140, 163, 0.14);
+    --redpen: #F0685C;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F1620;
+  --grid-line: rgba(120, 160, 220, 0.07);
+  --surface: #17202C;
+  --surface-soft: #1D2836;
+  --ink: #E8EDF5;
+  --ink-soft: #9DACC2;
+  --ink-faint: #6B7A90;
+  --border: #2A3646;
+  --prime: #3FD9C7;
+  --prime-tint: rgba(63, 217, 199, 0.12);
+  --composite: #A78BD1;
+  --composite-tint: rgba(167, 139, 209, 0.14);
+  --unit: #7C8CA3;
+  --unit-tint: rgba(124, 140, 163, 0.14);
+  --redpen: #F0685C;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background:
+    linear-gradient(var(--grid-line) 1px, transparent 1px) 0 0/100% 32px,
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px) 0 0/32px 100%,
+    var(--bg);
+  color: var(--ink);
+  font-family: 'Noto Sans KR', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-display { font-family: 'Gowun Batang', serif; }
+.font-mono-num { font-family: 'IBM Plex Mono', monospace; font-variant-numeric: tabular-nums; }
+.font-hand { font-family: 'Gaegu', cursive; }
+
+/* ---- tree / factor-tree connectors ---- */
+.tree-kids { display: grid; column-gap: 20px; position: relative; padding-top: 22px; }
+.tree-kids-2 { grid-template-columns: repeat(2, minmax(max-content, 1fr)); }
+.tree-kids-3 { grid-template-columns: repeat(3, minmax(max-content, 1fr)); }
+.tree-kids::after {
+  content: ""; position: absolute; top: -22px; left: 50%;
+  width: 1.5px; height: 22px; background: var(--border);
+}
+.tree-kids-2::before { content: ""; position: absolute; top: 0; left: 25%; right: 25%; height: 1.5px; background: var(--border); }
+.tree-kids-3::before { content: ""; position: absolute; top: 0; left: 16.6667%; right: 16.6667%; height: 1.5px; background: var(--border); }
+.tree-branch { position: relative; padding-top: 22px; }
+.tree-branch::before {
+  content: ""; position: absolute; top: 0; left: 50%;
+  width: 1.5px; height: 22px; background: var(--border);
+}
+
+/* ---- division ladder (GCD/LCM) ---- */
+.ladder-table { display: inline-flex; flex-direction: column; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+.ladder-row { display: flex; }
+.ladder-row:not(:last-child) { border-bottom: 1px solid var(--border); }
+.ladder-divisor {
+  width: 56px; display: flex; align-items: center; justify-content: center;
+  font-family: 'IBM Plex Mono', monospace; font-weight: 700;
+  background: var(--composite-tint); color: var(--composite);
+  border-right: 1.5px solid var(--border);
+}
+.ladder-cell {
+  min-width: 64px; display: flex; align-items: center; justify-content: center;
+  font-family: 'IBM Plex Mono', monospace; font-size: 16px; font-variant-numeric: tabular-nums;
+  padding: 10px 10px; border-right: 1px solid var(--border); color: var(--ink);
+}
+.ladder-cell:last-child { border-right: none; }
+.ladder-row.final .ladder-divisor { background: var(--prime-tint); color: var(--prime); }
+.ladder-row.final .ladder-cell { font-weight: 700; color: var(--prime); }
