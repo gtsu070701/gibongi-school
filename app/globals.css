@@ -81,7 +81,7 @@ body {
 .font-hand { font-family: 'Gaegu', cursive; }
 
 /* ---- tree / factor-tree connectors ---- */
-.tree-kids { display: grid; column-gap: 20px; position: relative; padding-top: 22px; }
+.tree-kids { display: grid; column-gap: 20px; position: relative; }
 .tree-kids-2 { grid-template-columns: repeat(2, minmax(max-content, 1fr)); }
 .tree-kids-3 { grid-template-columns: repeat(3, minmax(max-content, 1fr)); }
 .tree-kids::after {
